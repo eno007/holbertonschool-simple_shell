@@ -22,7 +22,9 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, unsigned long n);
 char *_strdup(char *str);
+
 int main(int argc, char *argv[], char * p_env[]);
+char *get_env(char *str, list_t *env);
 
 
 #endif
