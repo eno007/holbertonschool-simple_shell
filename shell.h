@@ -9,6 +9,13 @@
 #include <sys/stat.h>
 
 
+typedef struct list
+{
+	char *var;
+	struct list *next;
+} list_t;
+
+
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
