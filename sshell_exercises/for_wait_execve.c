@@ -22,7 +22,7 @@ int execute(int *forked)
 			perror("Error:");
 			return (1);
 		}
-		else if (child_pid == 0)
+		else if (child_pid != 0)
 		{
 			if (execve(argv[0], argv, NULL) == -1)
 				perror("Error:");
