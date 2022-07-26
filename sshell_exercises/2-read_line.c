@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
  * main - prints "$" and waits for the user to enter command
  * 			and prints it in the next line
