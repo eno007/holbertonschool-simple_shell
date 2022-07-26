@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	char *cmd = "/usr/bin/ls";
-	char *argv[] = {"ls", NULL};
+	char *cmd = "/usr/bin/cd";
+	char *argv[] = {"cd", NULL};
 	char *envv[] = {NULL};
 
 	printf("%s", cmd);
@@ -14,7 +14,7 @@ int main(void)
 	{
 		perror("Error");
 	}
-	printf("something went wrong");
+	printf("something went wrong\n");
 
 	return (0);
 }
