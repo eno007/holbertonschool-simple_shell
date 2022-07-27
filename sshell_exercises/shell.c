@@ -12,12 +12,11 @@
 #define MAXLIST 100 // max number of commands to be supported
 
 
-
 int takeInput(char *str)
 {
 	char* buf;
 	
-	buf = readline("\n>>> ");
+	buf = readline("$ ");
 	if (strlen(buf) != 0)
 	{
 		add_history(buf);
@@ -30,12 +29,11 @@ int takeInput(char *str)
 	}
 }
 
-// Function to print Current Directory.
 void printDir()
 {
 	char cwd[1024];
 	getcwd(cwd, sizeof(cwd));
-	printf("\nDir: %s", cwd);
+	printf("Dir: %s", cwd);
 }
 
 // Function where the system command is executed
