@@ -6,18 +6,21 @@
  * Return: list length
  */
 extern char **environ;
-
-/*
- * int main(int argc, char *argv[], char * p_env[])
+void print_env(char **environ)
 {
-	int i;
+	char **env_ptr;
+	unsigned int size;
 
-	for (i = 0; p_env[i] != NULL; i++)
-		printf("\n%s", p_env[i]);
-	getchar();
-	return (0);
+	env_ptr = environ;
+	while (*env_ptr)
+	{
+		size =  _strlen(*env_ptr);
+		write(STDOUT_FILENO, *env_ptr, size);
+		write(STDOUT_FILENO, "\n", 1);
+		env_ptr++;
+	}
 }
-/**
+/*
  * print_dlistint - print a doubly-linked list
  * @h: pointer to the head of the list
  *
@@ -76,3 +79,4 @@ int main()
 	printf("%s\n", _getenv("HOME"));
 	return 0;
 }
+
