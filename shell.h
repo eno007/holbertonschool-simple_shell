@@ -3,11 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+
+extern char **environ;
 
 typedef struct list
 {
@@ -29,6 +32,6 @@ int _atoi(char *s);
 void exitt(char **arv);
 //int main(int argc, char *argv[], char * p_env[]);
 char *get_env(char *str, list_t *env);
-
+char *command_path(char *cmd);
 
 #endif

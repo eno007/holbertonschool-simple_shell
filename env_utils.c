@@ -6,8 +6,6 @@
  * @p_env: var to print
  * Return: 0
  */
-extern char **environ;
-void print_env(char **environ)
 
 int _printenv(int argc, char *argv[], char * p_env[])
 {
