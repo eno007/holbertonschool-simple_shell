@@ -2,7 +2,7 @@
 #define SHELL_H
 
 #include <stdio.h>
-#include <stdlib.>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -22,8 +22,12 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, unsigned long n);
 char *_strdup(char *str);
-
-int main(int argc, char *argv[], char * p_env[]);
+void _unsetenv(char **arv);
+void _setenv(char **arv);
+void env(char **arv __attribute__ ((unused)));
+int _atoi(char *s);
+void exitt(char **arv);
+//int main(int argc, char *argv[], char * p_env[]);
 char *get_env(char *str, list_t *env);
 
 
