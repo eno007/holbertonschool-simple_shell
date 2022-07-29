@@ -23,18 +23,10 @@ int _printenv(int argc, char *argv[], char * p_env[])
 		env_ptr++;
 	}
 }
-/*
- * print_dlistint - print a doubly-linked list
- * @h: pointer to the head of the list
-=======
-	for (i = 0; p_env[i] != NULL; i++)
-		printf("\n%s", p_env[i]);
-	return (0);
-}
+
 /**
  * _getenv - searches for environment string pointed by name
  * @name: string containing the name of the requested variable
->>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
  *
  * Return: 0
  */
