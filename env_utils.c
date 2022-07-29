@@ -1,16 +1,24 @@
 #include "shell.h"
 /**
- * print_dlistint - print a doubly-linked list
- * @h: pointer to the head of the list
- *
- * Return: list length
+ * _printenv  - print environ global variable
+ * @argc: argument count
+ * @argv: argument vector
+ * @p_env: var to print
+ * Return: 0
  */
 extern char **environ;
+<<<<<<< HEAD
 void print_env(char **environ)
+=======
+
+
+int _printenv(int argc, char *argv[], char * p_env[])
+>>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
 {
 	char **env_ptr;
 	unsigned int size;
 
+<<<<<<< HEAD
 	env_ptr = environ;
 	while (*env_ptr)
 	{
@@ -23,28 +31,18 @@ void print_env(char **environ)
 /*
  * print_dlistint - print a doubly-linked list
  * @h: pointer to the head of the list
+=======
+	for (i = 0; p_env[i] != NULL; i++)
+		printf("\n%s", p_env[i]);
+	return (0);
+}
+/**
+ * _getenv - searches for environment string pointed by name
+ * @name: string containing the name of the requested variable
+>>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
  *
- * Return: list length
- *
-char *get_env(char *str, list_t *env)
-{
-	int j = 0, cs = 0;
-
-	while (env != NULL)
-	{
-		j = 0;
-		while ((env->var)[j] == str[j]) 
-			j++;
-		if (str[j] == '\0' && (env->var)[j] == '=')
-			break;
-		env = env->next;
-	}
-
-	while (str[cs] != '\0')
-		cs++;
-	cs++;
-	return (c_strdup(env->var, cs));
-}*/
+ * Return: 0
+ */
 char *_getenv(const char *name)
 {
 	int i, j;
@@ -73,6 +71,7 @@ char *_getenv(const char *name)
 	}
 	return (0);
 }
+<<<<<<< HEAD
 
 int main()
 {
@@ -80,3 +79,5 @@ int main()
 	return 0;
 }
 
+=======
+>>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
