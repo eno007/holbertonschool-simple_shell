@@ -7,18 +7,13 @@
  * Return: 0
  */
 extern char **environ;
-<<<<<<< HEAD
 void print_env(char **environ)
-=======
-
 
 int _printenv(int argc, char *argv[], char * p_env[])
->>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
 {
 	char **env_ptr;
 	unsigned int size;
 
-<<<<<<< HEAD
 	env_ptr = environ;
 	while (*env_ptr)
 	{
@@ -71,13 +66,9 @@ char *_getenv(const char *name)
 	}
 	return (0);
 }
-<<<<<<< HEAD
 
 int main()
 {
 	printf("%s\n", _getenv("HOME"));
 	return 0;
 }
-
-=======
->>>>>>> d518e10b2ed67132b2b2629788eaabce0e550631
