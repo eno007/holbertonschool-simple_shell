@@ -56,9 +56,3 @@ char *_getenv(const char *name)
 	}
 	return (0);
 }
-
-int main()
-{
-	printf("%s\n", _getenv("HOME"));
-	return 0;
-}
