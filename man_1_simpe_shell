@@ -44,7 +44,7 @@ Command options will be typed after the main command followed by a space and a
 
 $ ./hsh
 ($) /bin/ls
-hsh main.c shell.c
+hsh command_path.c shell.c
 ($)
 ($) exit
 ($)/bin/ls
