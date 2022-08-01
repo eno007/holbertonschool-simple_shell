@@ -6,26 +6,29 @@
  * @p_env: var to print
  * Return: 0
  */
-
+/*
 int _printenv(void)
 {
-	unsigned int size = _strlen(str);
 	char *str = environ[0];
+	unsigned int size = _strlen(str);
+	int i;
 
 	while (str[i])
 	{
 		write(STDOUT_FILENO, str, size);
 		write(STDOUT_FILENO, "\n", 1);
-		str = environ[++i]
+		str = environ[++i];
 	}
+	return (0);
 }
-
+*/
 /**
  * _getenv - searches for environment string pointed by name
  * @name: string containing the name of the requested variable
  *
  * Return: 0
  */
+
 char *_getenv(const char *name)
 {
 	int i, j;
@@ -52,5 +55,11 @@ char *_getenv(const char *name)
 			}
 		}
 	}
-	return (0);
+	return (NULL);
+}
+
+int main()
+{
+	printf("%s\n", _getenv("PATH"));
+	return 0;
 }

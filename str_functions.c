@@ -47,7 +47,7 @@ char *_strcat(char *dest, char *src)
  */
 int _strcmp(char *s1, char *s2)
 {
-	int length = 0; result = 0;
+	int length = 0, result = 0;
 
 	while (s1[length] || s2[length])
 	{
@@ -70,6 +70,7 @@ int _strcmp(char *s1, char *s2)
  * Return: 0 if string are indetical, less than 0 if s1 shorter than s2
  * 		greater than 0 if s1 is longer than s2
  */
+
 int _strncmp(char *s1, char *s2, int n)
 {
 	int i;
