@@ -70,9 +70,9 @@ int _strcmp(char *s1, char *s2)
  * Return: 0 if string are indetical, less than 0 if s1 shorter than s2
  * 		greater than 0 if s1 is longer than s2
  */
-int _strncmp(char *s1, char *s2, size_t n)
+int _strncmp(char *s1, char *s2, int n)
 {
-	size_t i;
+	int i;
 	unsigned long len;
 
 	for (len = 0; s1[len] && s2[len] && len < n; len++)
