@@ -7,18 +7,16 @@
  * Return: 0
  */
 
-int _printenv(int argc, char *argv[], char * p_env[])
+int _printenv(void)
 {
-	char **env_ptr;
-	unsigned int size;
+	unsigned int size = _strlen(str);
+	char *str = environ[0];
 
-	env_ptr = environ;
-	while (*env_ptr)
+	while (str[i])
 	{
-		size =  _strlen(*env_ptr);
-		write(STDOUT_FILENO, *env_ptr, size);
+		write(STDOUT_FILENO, str, size);
 		write(STDOUT_FILENO, "\n", 1);
-		env_ptr++;
+		str = environ[++i]
 	}
 }
 
