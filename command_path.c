@@ -5,7 +5,7 @@
  * @cmd: string
  * Return: copy of cmd, NULL if any errors
  */
-char *command_path(char *cmd)
+char *main(char *cmd)
 {
 	char *path = _strdup(_getenv("PATH"));
 	char *token = strtok(path, ":");
@@ -13,6 +13,10 @@ char *command_path(char *cmd)
 	char *new_path = NULL;
 	int len;
 	struct stat buf;
+
+	// cmd = "ls";
+
+	// printf("%s\n", path);
 
 	new_path = malloc(sizeof(char) * 100);
 	if (_getenv("PATH")[0] == ':')
@@ -29,14 +33,17 @@ char *command_path(char *cmd)
 	}
 	path_array[len] = NULL;
 
-	len = 0;
-	while (path_array[len] != NULL)
+/*	for (len = 0; path_array[len]; len++)
+		printf("%s\n", path_array[len]);
+*/
+	for (len = 0; path_array[len]; len++)
 	{
 		_strcpy(new_path, path_array[len]);
-		_strcpy(new_path, "/");
-		_strcpy(new_path, cmd);
-		_strcpy(new_path, "\0");
-		len++;
+		_strcat(new_path, "/");
+		_strcat(new_path, cmd);
+		_strcat(new_path, "\0");
+		
+	//	printf("%s\n", new_path);
 
 		if (stat(new_path, &buf) == 0)
 		{
