@@ -23,7 +23,7 @@ char *command_path(char *cmd)
 	len = 0;
 	while (token != NULL)
 	{
-		path[len] = token;
+		path_array[len] = token;
 		len++;
 		token = strtok(NULL, ":");
 	}
