@@ -6,7 +6,7 @@
  * @p_env: var to print
  * Return: 0
  */
-/*
+
 int _printenv(void)
 {
 	char *str = environ[0];
@@ -21,7 +21,7 @@ int _printenv(void)
 	}
 	return (0);
 }
-*/
+
 /**
  * _getenv - searches for environment string pointed by name
  * @name: string containing the name of the requested variable

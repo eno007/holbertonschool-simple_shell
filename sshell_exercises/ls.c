@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	char *cmd = "/usr/bin/cd";
-	char *argv[] = {"cd", NULL};
+	char *cmd = "/usr/bin/ls";
+	char *argv[] = {"ls", NULL};
 	char *envv[] = {NULL};
 
 	printf("%s", cmd);
