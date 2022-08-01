@@ -25,6 +25,6 @@ int _str_n_cmp(char *s1, char *s2, int n)
 					return (0);
 			}
 		}
-		return (0);
 	}
+	return (0);
 }
