@@ -23,20 +23,20 @@ char *command_path(char *cmd)
 	len = 0;
 	while (token != NULL)
 	{
-		path[i] = token;
-		i++;
+		path[len] = token;
+		len++;
 		token = strtok(NULL, ":");
 	}
-	path_array[i] = NULL;
+	path_array[len] = NULL;
 
 	len = 0;
-	while (path_array[i] != NULL)
+	while (path_array[len] != NULL)
 	{
-		_strcpy(new_path, path_array[i]);
+		_strcpy(new_path, path_array[len]);
 		_strcpy(new_path, "/");
 		_strcpy(new_path, cmd);
 		_strcpy(new_path, "\0");
-		i++;
+		len++;
 
 		if (stat(new_path, &buf) == 0)
 		{
