@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * check_delim - function that checks if a character matchs any character
  * @c: character to check
@@ -23,18 +24,18 @@ unsigned int check_delim(char c, const char *str)
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *tokens;
+	static char *token;
 	static char *new_token;
 	unsigned int i;
 
 	if (str != NULL)
 		new_token = str;
-	tokens = new_token;
-	if (tokens == NULL)
+	token = new_token;
+	if (token == NULL)
 		return (NULL);
-	for (i = 0; tokens[i] != '\0'; i++)
+	for (i = 0; token[i] != '\0'; i++)
 	{
-		if (check_delim(tokens[i], delim) == 0)
+		if (check_delim(token[i], delim) == 0)
 			break;
 	}
 	if (new_token[i] == '\0' || new_token[i] == '#')
@@ -42,8 +43,8 @@ char *_strtok(char *str, const char *delim)
 		new_token = NULL;
 		return (NULL);
 	}
-	tokens = new_token + i;
-	new_token = tokens;
+	token = new_token + i;
+	new_token = token;
 	for (i = 0; new_token[i] != '\0'; i++)
 	{
 		if (check_delim(new_token[i], delim) == 1)
@@ -58,5 +59,5 @@ char *_strtok(char *str, const char *delim)
 		if (*new_token == '\0')
 			new_token = NULL;
 	}
-	return (tokens);
+	return (token);
 }

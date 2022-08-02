@@ -21,7 +21,8 @@ char *_strdup(char *str);
 
 int _printenv(void);
 char *_getenv(const char *name);
-int command_read(char *s, size_t __attribute__((unsused))characters);
+int command_read(char *s, size_t __attribute__((unused))characters);
+
 char *_strtok(char *str, const char *delim);
 unsigned int check_delim(char c, const char *str);
 char *command_path(char *cmd);
