@@ -5,7 +5,7 @@
  * @cmd: string
  * Return: copy of cmd, NULL if any errors
  */
-char *main(char *cmd)
+char *command_path(char *cmd)
 {
 	char *path = _strdup(_getenv("PATH"));
 	char *token = strtok(path, ":");

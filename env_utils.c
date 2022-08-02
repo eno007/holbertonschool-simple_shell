@@ -15,8 +15,8 @@ int _printenv(void)
 
 	while (str[i])
 	{
-		write(STDOUT_FILENO, str, size);
-		write(STDOUT_FILENO, "\n", 1);
+		write(1, str, size);
+		write(1, "\n", 1);
 		str = environ[++i];
 	}
 	return (0);
