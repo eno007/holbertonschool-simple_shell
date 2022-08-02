@@ -31,7 +31,7 @@ In this case the command is `ls` (list all files and directories inside the curr
 ### Builtins
 There are two built-ins programmed into the shell. Below is a description and use for each built-in.
 
-* `env` - is a to tell shell to display the environment variable with its values.
+* `env` - is used to display the environment variable with its values.
 
 * `exit` - is used to exit the current shell.
 
