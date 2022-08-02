@@ -73,8 +73,7 @@ int _strcmp(char *s1, char *s2)
 
 int _strncmp(char *s1, char *s2, int n)
 {
-	int i;
-	unsigned long len;
+	int i = 0, len;
 
 	for (len = 0; s1[len] && s2[len] && len < n; len++)
 	{

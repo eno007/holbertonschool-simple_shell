@@ -14,9 +14,9 @@ char *command_path(char *cmd)
 	int len;
 	struct stat buf;
 
-	// cmd = "ls";
+	/* cmd = "ls";
 
-	// printf("%s\n", path);
+	 printf("%s\n", path); */
 
 	new_path = malloc(sizeof(char) * 100);
 	if (_getenv("PATH")[0] == ':')
@@ -43,7 +43,7 @@ char *command_path(char *cmd)
 		_strcat(new_path, cmd);
 		_strcat(new_path, "\0");
 		
-	//	printf("%s\n", new_path);
+	/*	printf("%s\n", new_path); */
 
 		if (stat(new_path, &buf) == 0)
 		{
