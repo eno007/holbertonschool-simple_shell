@@ -54,7 +54,7 @@ int execute(char *cmd_arr[])
 	if (execute_path == NULL)
 	{
 		write(STDERR_FILENO, name, _strlen(name));
-		write(STDERR_FILENO, ": 1:", 4);
+		write(STDERR_FILENO, ": 1: ", 4);
 		write(STDERR_FILENO, cmd, _strlen(cmd));
 		write(STDERR_FILENO, ": not found\n", 12);
 
