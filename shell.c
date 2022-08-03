@@ -61,7 +61,7 @@ int command_read(char *s, size_t __attribute__((unused))characters)
 	int i = 0;
 
 	if (_strcmp(s, "exit") == 0)
-		return (2);
+		return (_exit_());
 	if (_strcmp(s, "env") == 0)
 	{
 		_printenv();

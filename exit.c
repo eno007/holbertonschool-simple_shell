@@ -1,15 +1,15 @@
 #include "shell.h"
-void _exit(char **command)
+void _exit_(char **command)
 {
 	int _status = 0;
 
 	if (command[1] == NULL)
 	{
-		free_dp(command);
+		free(command);
 		exit(EXIT_SUCCESS);
 	}
 	_status = _atoi(command[1]);
-	free_dp(command);
+	free(command);
 	exit(_status);
 }
 

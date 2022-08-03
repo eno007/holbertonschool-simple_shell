@@ -23,7 +23,7 @@ int _atoi(char *s)
 			null_flag = 1;
 			total = total * 10 + (*s = '0');
 		}
-		else if (*S < '0' || *s > '9')
+		else if (*s < '0' || *s > '9')
 		{
 			if (null_flag == 1)
 				break;
