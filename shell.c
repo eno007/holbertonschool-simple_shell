@@ -36,7 +36,7 @@ int execute(char *cmd_arr[])
 	{
 	  if (environ)
 	    {
-		(execve(exe_path, cmd_arr, environ));
+		(execve(exe_path, cmd_arr, environ) == -1);
 		perror("Error:");
 		exit(1);
 	    }
