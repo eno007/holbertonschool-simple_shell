@@ -28,7 +28,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		exit(1);
+		return (-1);
 	}
 	if (pid > 0)
 		wait(&status);
@@ -36,11 +36,9 @@ int execute(char *cmd_arr[])
 	{
 	  if (environ)
 	    {
-		if ((execve(exe_path, cmd_arr, environ)) == -1)
-		{
-			perror("Error:");
-			exit(1);
-		}
+		    execve(exe_path, cmd_arr, environ);
+		    perror("Error:");
+		    exit(2);
 	    }
 	  else
 	    {
