@@ -28,7 +28,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		free_exit(cmd_arr);
+		exit(1);
 	}
 	if (pid > 0)
 		wait(&status);
@@ -61,7 +61,7 @@ int command_read(char *s, size_t __attribute__((unused))characters)
 	int i = 0;
 
 	if (_strcmp(s, "exit") == 0)
-		return (_exit_());
+		exit(2);
 	if (_strcmp(s, "env") == 0)
 	{
 		_printenv();

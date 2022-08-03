@@ -32,7 +32,7 @@ unsigned int check_delim(char c, const char *str);
 char *command_path(char *cmd);
 
 void free_exit(char **command);
-void _exit_(char **command);
+void _exit_();
 int _atoi(char *s);
 
 
