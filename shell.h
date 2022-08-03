@@ -21,12 +21,16 @@ char *_strdup(char *str);
 
 int _printenv(void);
 char *_getenv(const char *name);
+
 int command_read(char *s, size_t __attribute__((unused))characters);
 int execute(char *cmd_arr[]);
 int main(int __attribute__ ((unused))argc, char *argv[]);
+
 char *_strtok(char *str, const char *delim);
 unsigned int check_delim(char c, const char *str);
+
 char *command_path(char *cmd);
+
 void free_exit(char **command);
 
 

@@ -23,6 +23,7 @@ int execute(char *cmd_arr[])
 
 		return (3);
 	}
+
 	pid = fork();
 	if (pid < 0)
 	{
@@ -47,11 +48,12 @@ int execute(char *cmd_arr[])
 	free(exe_path);
 	return (0);
 }
-/*
+
+
+/**
  *
  *
  */
-
 int command_read(char *s, size_t __attribute__((unused))characters)
 {
 	char *token = NULL;
@@ -61,7 +63,12 @@ int command_read(char *s, size_t __attribute__((unused))characters)
 	if (_strcmp(s, "exit") == 0)
 		return (2);
 	if (_strcmp(s, "env") == 0)
-		return (_printenv());
+	{
+		_printenv();
+		return(EXIT_SUCCESS);
+	}
+
+
 	token = strtok(s, " ");
 	while (token)
 	{
@@ -71,6 +78,12 @@ int command_read(char *s, size_t __attribute__((unused))characters)
 	path_array[i] = NULL;
 	return (execute(path_array));
 }
+
+/**
+ *
+ *
+ *
+ */
 int main(int __attribute__ ((unused))argc, char *argv[])
 {
 	char *line = NULL;
