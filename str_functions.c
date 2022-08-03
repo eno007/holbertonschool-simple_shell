@@ -103,7 +103,7 @@ char *_strdup(char *str)
 
 	while (str[len])
 		len++;
-	cpy = malloc(len * sizeof(char) + 1);
+	cpy = malloc(len * sizeof(char));
 
 	if (cpy == NULL)
 		return (NULL);
