@@ -10,16 +10,17 @@
 int _printenv(void)
 {
 	char *str = environ[0];
+	int fd = 1;
 	int i = 1;
 
 	while (str[i])
 	{
-		write(1, str, _strlen(str));
-		write(1, "\n", 1);
+		write(fd, str, _strlen(str));
+		write(fd, "\n", 1);
 		str = environ[i];
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 /**
