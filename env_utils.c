@@ -19,7 +19,7 @@ int _printenv(void)
 		str = environ[i];
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /**
