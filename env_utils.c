@@ -17,7 +17,7 @@ int _printenv(void)
 		write(1, str, _strlen(str));
 		write(1, "\n", 1);
 		str = environ[i];
-		++i;
+		i++;
 	}
 	return (0);
 }
