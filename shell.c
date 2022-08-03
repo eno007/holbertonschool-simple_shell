@@ -45,7 +45,7 @@ int main(int __attribute__ ((unused))argc, char *argv[])
  */
 int execute(char *cmd_arr[])
 {
-	char *execute_path = NULL;
+	char *execute_path;
 	char *cmd = NULL;
 	pid_t pid;
 	int status;
