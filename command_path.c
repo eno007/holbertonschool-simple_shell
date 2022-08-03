@@ -13,6 +13,7 @@ char *command_path(char *cmd)
 	char *path_array[100];
 	char *new_path = NULL;
 	struct stat buffer;
+	char *a = " ";
 
 	new_path = malloc(sizeof(char) * 100);
 	if (_getenv("PATH")[0] == ':')
@@ -26,7 +27,7 @@ char *command_path(char *cmd)
 	}
 	path_array[length] = NULL;
 
-	for (length = 0; path_array[length]; length++)
+	for (length = 0; path_array[length] != NULL || path_array[length] != a; length++)
 	{
 		_strcpy(new_path, path_array[length]);
 		_strcat(new_path, "/");
