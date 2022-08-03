@@ -34,7 +34,6 @@ int main(int __attribute__ ((unused))argc, char *argv[])
 			break;
 	}
 	free(line);
-	line = NULL;
 	return (0);
 }
 
@@ -48,7 +47,7 @@ int execute(char *cmd_arr[])
 	char *execute_path;
 	char *cmd = NULL;
 	pid_t pid;
-	int status;
+	int status, execve_status;
 
 	cmd = cmd_arr[0];
 	execute_path = command_path(cmd);
@@ -64,25 +63,19 @@ int execute(char *cmd_arr[])
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("Error:");
-		return (0);
+		write(STDERR_FILENO, ERR_FORK, _strlen(ERR_FORK));
+		perror("Error");
+		exit(EXIT_FAILURE);
 	}
-	if (pid > 0)
-		wait(&status);
-	else if (pid == 0)
+	if (pid == 0)
 	{
-		if (environ)
-		{
-			(execve(execute_path, cmd_arr, environ));
-			perror("Error:");
-			exit(2);
-		}
-		else
-		{
-			execve(execute_path, cmd_arr, NULL);
-		}
+		execve_status = execve(execute_path, cmd_arr, environ);
+		if (execve_status == -1)
+			return (-1);
 	}
-	free(execute_path);
+	else
+		wait(&status);
+
 	return (0);
 }
 
