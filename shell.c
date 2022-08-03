@@ -27,7 +27,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		return (-1);
+		free_exit(cmd_arr);
 	}
 	if (pid > 0)
 		wait(&status);

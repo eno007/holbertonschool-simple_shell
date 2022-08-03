@@ -27,5 +27,8 @@ int main(int __attribute__ ((unused))argc, char *argv[]);
 char *_strtok(char *str, const char *delim);
 unsigned int check_delim(char c, const char *str);
 char *command_path(char *cmd);
+void free_exit(char **command);
+
+
 
 #endif
