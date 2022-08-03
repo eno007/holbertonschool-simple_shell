@@ -10,14 +10,14 @@
 int _printenv(void)
 {
 	char *str = environ[0];
-	unsigned int size = _strlen(str);
-	int i;
+	int i = 0;
 
 	while (str[i])
 	{
-		write(1, str, size);
+		write(1, str, _strlen(str));
 		write(1, "\n", 1);
-		str = environ[++i];
+		str = environ[i];
+		++i;
 	}
 	return (0);
 }
