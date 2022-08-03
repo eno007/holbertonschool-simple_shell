@@ -58,7 +58,7 @@ char *_strcat(char *dest, char *src)
 
 	while (*srcTemp != '\0')
 		*destTemp++ = *srcTemp++;
-	dest[i] = '\0';
+	*destTemp = '\0';
 	return (dest);
 }
 
