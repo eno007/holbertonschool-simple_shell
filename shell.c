@@ -1,117 +1,110 @@
 #include "shell.h"
-char *name;
-
-/*
- *
- *
- */
-int execute(char *cmd_arr[])
-{
-	char *exe_path = NULL;
-	char *cmd = NULL;
-	pid_t pid;
-	int status;
-
-	cmd = cmd_arr[0];
-	exe_path = command_path(cmd);
-	if (exe_path == NULL)
-	{
-	        write(2, name, _strlen(name));
-		write (2, ": ", 2);
-	        write(2, cmd, _strlen(cmd));
-		write(2, ": not found\n", 12);
-
-		return (3);
-	}
-
-	pid = fork();
-	if (pid < 0)
-	{
-		perror("Error:");
-		return (-1);
-	}
-	if (pid > 0)
-		wait(&status);
-	else if (pid == 0)
-	{
-	  if (environ)
-	    {
-		    execve(exe_path, cmd_arr, environ);
-		    perror("Error:");
-		    exit(2);
-	    }
-	  else
-	    {
-	      execve(exe_path, cmd_arr, NULL);
-	    }
-	}
-	free(exe_path);
-	return (0);
-}
-
 
 /**
- *
- *
+ * main - A function that runs our shell.
+ * @ac: The number of inputed arguments.
+ * @av: The pointer to array of inputed arguments.
+ * @env: The pointer to array of enviromental variables.
+ * Return: Always 0.
  */
-int command_read(char *s, size_t __attribute__((unused))characters)
+int main(int ac, char **av, char **env)
 {
-	char *token = NULL;
-	char *path_array[100];
-	int i = 0;
-
-	if (_strcmp(s, "exit") == 0)
-		return (2);
-	if (_strcmp(s, "env") == 0)
-	{
-		_printenv();
-		return(EXIT_SUCCESS);
-	}
-
-
-	token = strtok(s, " ");
-	while (token)
-	{
-		path_array[i++] = token;
-		token = strtok(NULL, " ");
-	}
-	path_array[i] = NULL;
-	return (execute(path_array));
-}
-
-/**
- *
- *
- *
- */
-int main(int __attribute__ ((unused))argc, char *argv[])
-{
-	char *line = NULL;
+	char *buffer = NULL, **command = NULL;
 	size_t buf_size = 0;
-	ssize_t characters = 0;
-
-	name = argv[0];
+	ssize_t chars_readed = 0;
+	int cicles = 0;
+	(void)ac;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 1)
-			write(1, "$ ", 2);
-		characters = getline(&line, &buf_size, stdin);
-		if (characters == -1)
+		cicles++;
+		prompt();
+		signal(SIGINT, handle);
+		chars_readed = getline(&buffer, &buf_size, stdin);
+		if (chars_readed == EOF)
+			_EOF(buffer);
+		else if (*buffer == '\n')
+			free(buffer);
+		else
 		{
-			if (isatty(STDIN_FILENO) == 1)
-				write(1, "\n", 1);
-			break;
+			buffer[_strlen(buffer) - 1] = '\0';
+			command = tokening(buffer, " \0");
+			free(buffer);
+			if (_strcmp(command[0], "exit") != 0)
+				shell_exit(command);
+			else if (_strcmp(command[0], "cd") != 0)
+				change_dir(command[1]);
+			else
+				create_child(command, av[0], env, cicles);
 		}
-		if (line[characters - 1]  == '\n')
-			line[characters - 1]  = '\0';
-		if (*line == '\0')
-			continue;
-		if (command_read(line, characters) == 2)
-			break;
+		fflush(stdin);
+		buffer = NULL, buf_size = 0;
 	}
-	free(line);
-	line = NULL;
+	if (chars_readed == -1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
 
-	return (0);
+
+/**
+ * prompt - A function that prints the prompt
+ * Return: Nothing.
+ */
+void prompt(void)
+{
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "Hell_Shell>> ", 13);
+}
+
+
+/**
+ * handle - A function to handle Ctr + C signal.
+ * @signals: The signal to handle.
+ * Return: Nothing.
+ */
+void handle(int signals)
+{
+	(void)signals;
+	write(STDOUT_FILENO, "\nHell_Shell>> ", 14);
+}
+
+
+/**
+ * _EOF - A function that chaecks if buffer is EOF
+ * @buffer: The pointer to the input string.
+ * Return: Nothing
+ */
+void _EOF(char *buffer)
+{
+	if (buffer)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "\n", 1);
+	free(buffer);
+	exit(EXIT_SUCCESS);
+}
+
+
+/**
+ * shell_exit - A function that exits the shell.
+ * @command: The pointer to tokenized command.
+ * Return: Nothing.
+ */
+void shell_exit(char **command)
+{
+	int sta_tus = 0;
+
+	if (command[1] == NULL)
+	{
+		free_dp(command);
+		exit(EXIT_SUCCESS);
+	}
+
+	sta_tus = _atoi(command[1]);
+	free_dp(command);
+	exit(sta_tus);
 }
