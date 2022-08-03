@@ -47,35 +47,40 @@ int execute(char *cmd_arr[])
 	char *execute_path;
 	char *cmd = NULL;
 	pid_t pid;
-	int status, execve_status;
+	int status;
 
 	cmd = cmd_arr[0];
 	execute_path = command_path(cmd);
 	if (execute_path == NULL)
 	{
-		write(2, name, _strlen(name));
-		write(2, ": ", 2);
-		write(2, cmd, _strlen(cmd));
-		write(2, ": not found\n", 12);
+		write(STDERR_FILENO, name, _strlen(name));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, cmd, _strlen(cmd));
+		write(STDERR_FILENO, ": not found\n", 12);
 
 		return (3);
 	}
 	pid = fork();
 	if (pid < 0)
 	{
-		write(STDERR_FILENO, ERR_FORK, _strlen(ERR_FORK));
-		perror("Error");
-		exit(EXIT_FAILURE);
+		perror("Error:");
+		return (0);
 	}
-	if (pid == 0)
+	else if (pid == 0)
 	{
-		execve_status = execve(execute_path, cmd_arr, environ);
-		if (execve_status == -1)
-			return (-1);
+		if (environ)
+		{
+			execve(execute_path, cmd_arr, environ);
+			perror("Error:");
+			exit(2);
+		}
+		else
+			execve(execute_path, cmd_arr, NULL);
 	}
 	else
 		wait(&status);
 
+	free(execute_path);
 	return (0);
 }
 
