@@ -65,7 +65,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		return (-1);
+		return (0);
 	}
 	if (pid > 0)
 		wait(&status);
@@ -101,8 +101,10 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 
 	if (_strcmp(str, "exit") == 0)
 		return (2);
+
 	if (_strcmp(str, "env") == 0)
 		return (_printenv());
+
 	token = strtok(str, " "), i = 0;
 	while (token)
 	{
@@ -110,5 +112,6 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 		token = strtok(NULL, " ");
 	}
 	cmd_arr[i] = NULL;
+	free(token);
 	return (execute(cmd_arr));
 }

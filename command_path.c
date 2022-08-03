@@ -32,6 +32,7 @@ char *command_path(char *cmd)
 		_strcat(new_path, "/");
 		_strcat(new_path, cmd);
 		_strcat(new_path, "\0");
+		
 		if (stat(new_path, &buffer) == 0)
 		{
 			free(path);
@@ -40,6 +41,7 @@ char *command_path(char *cmd)
 		else
 			new_path[0] = 0;
 	}
+
 	free(path);
 	free(new_path);
 	if (stat(cmd, &buffer) == 0)
