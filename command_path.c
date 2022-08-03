@@ -27,7 +27,7 @@ char *command_path(char *cmd)
 	}
 	path_array[length] = NULL;
 
-	for (length = 0; path_array[length] != NULL || path_array[length] != a; length++)
+	for (length = 0; path_array[length]; length++)
 	{
 		_strcpy(new_path, path_array[length]);
 		_strcat(new_path, "/");
