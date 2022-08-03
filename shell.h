@@ -12,7 +12,6 @@
 #include <fcntl.h>
 
 
-#define ERR_FORK "Unable to fork and create child process\n"
 
 char *name;/* global variable */
 extern char **environ;
@@ -32,7 +31,5 @@ int command_read(char *str, size_t __attribute__((unused))characters);
 int main(int __attribute__ ((unused))argc, char *argv[]);
 int execute(char *cmd_arr[]);
 
-char **parse_cmd(char *input);
-unsigned int check_delim(char c, const char *str);
-char *_strtok(char *str, const char *delim);
+/* char *_strtok(char *str, const char *delim); */
 #endif
