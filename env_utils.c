@@ -10,7 +10,7 @@
 int _printenv(void)
 {
 	char *str = environ[0];
-	int i = 0;
+	int i = 1;
 
 	while (str[i])
 	{
