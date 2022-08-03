@@ -58,7 +58,7 @@ int execute(char *cmd_arr[])
 		write(STDERR_FILENO, cmd, _strlen(cmd));
 		write(STDERR_FILENO, ": not found\n", 12);
 
-		return (3);
+		exit(127);
 	}
 	pid = fork();
 	if (pid < 0)
