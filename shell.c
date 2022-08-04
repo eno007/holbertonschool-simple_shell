@@ -28,8 +28,10 @@ int main(int __attribute__ ((unused))argc, char *argv[])
 		}
 		if (line[chars - 1] == '\n')
 			line[chars - 1] = '\0';
+
 		if (*line == '\0')
 			continue;
+
 		if (command_read(line, chars) == 2)
 			break;
 	}
@@ -103,11 +105,21 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 	if (_strcmp(str, "env") == 0)
 		return (_printenv());
 
-	token = strtok(str, " "), i = 0;
+	token = malloc(sizeof(char) * 1024);
+	if (token == NULL)
+	{
+		write(STDERR_FILENO, ERR_MALLOC, _strlen(ERR_MALLOC));
+		exit(EXIT_FAILURE);
+	}
+
+	token = strtok(str, "\n\t\r ");
+
+	i = 0;
 	while (token)
 	{
-		cmd_arr[i++] = token;
-		token = strtok(NULL, " ");
+		cmd_arr[i] = token;
+		token = strtok(NULL, "\n\t\r ");
+		i++;
 	}
 	cmd_arr[i] = NULL;
 	free(token);

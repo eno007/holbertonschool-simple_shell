@@ -12,6 +12,7 @@
 #include <fcntl.h>
 
 
+#define ERR_MALLOC "Unable to malloc space\n"
 
 char *name;/* global variable */
 extern char **environ;
