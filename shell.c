@@ -95,7 +95,7 @@ int execute(char *cmd_arr[])
 
 int command_read(char *str, size_t __attribute__((unused))characters)
 {
-	char *token = NULL;
+	char *token;
 	char *cmd_arr[100];
 	int i;
 
@@ -104,13 +104,6 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 
 	if (_strcmp(str, "env") == 0)
 		return (_printenv());
-
-	token = malloc(sizeof(char) * 1024);
-	if (token == NULL)
-	{
-		write(STDERR_FILENO, ERR_MALLOC, _strlen(ERR_MALLOC));
-		exit(EXIT_FAILURE);
-	}
 
 	token = strtok(str, "\n\t\r ");
 
