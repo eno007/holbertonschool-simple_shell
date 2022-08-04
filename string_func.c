@@ -47,19 +47,18 @@ int _strlen(char *s)
  */
 char *_strcat(char *dest, char *src)
 {
-	int i = 0;
-	int j = 0;
+	char *destTemp;
+	const char *srcTemp;
 
-	while (dest[i])
-	{
-		i++;
-	}
-	while (src[j])
-	{ dest[i] = src[j];
-		i++;
-		j++;
-	}
-	dest[i] = '\0';
+	destTemp = dest;
+	srcTemp = src;
+
+	while (*destTemp != '\0')
+		destTemp++;
+
+	while (*srcTemp != '\0')
+		*destTemp++ = *srcTemp++;
+	*destTemp = '\0';
 	return (dest);
 }
 

@@ -34,7 +34,6 @@ int main(int __attribute__ ((unused))argc, char *argv[])
 			break;
 	}
 	free(line);
-	line = NULL;
 	return (0);
 }
 
@@ -45,7 +44,7 @@ int main(int __attribute__ ((unused))argc, char *argv[])
  */
 int execute(char *cmd_arr[])
 {
-	char *execute_path = NULL;
+	char *execute_path;
 	char *cmd = NULL;
 	pid_t pid;
 	int status;
@@ -54,34 +53,33 @@ int execute(char *cmd_arr[])
 	execute_path = command_path(cmd);
 	if (execute_path == NULL)
 	{
-		write(2, name, _strlen(name));
-		write(2, ": ", 2);
-		write(2, cmd, _strlen(cmd));
-		write(2, ": not found\n", 12);
+		write(STDERR_FILENO, name, _strlen(name));
+		write(STDERR_FILENO, ": 1: ", 5);
+		write(STDERR_FILENO, cmd, _strlen(cmd));
+		write(STDERR_FILENO, ": not found\n", 12);
 
-		return (3);
+		exit(127);
 	}
 	pid = fork();
 	if (pid < 0)
 	{
 		perror("Error:");
-		return (-1);
+		return (0);
 	}
-	if (pid > 0)
-		wait(&status);
 	else if (pid == 0)
 	{
 		if (environ)
 		{
-			(execve(execute_path, cmd_arr, environ));
+			execve(execute_path, cmd_arr, environ);
 			perror("Error:");
 			exit(2);
 		}
 		else
-		{
 			execve(execute_path, cmd_arr, NULL);
-		}
 	}
+	else
+		wait(&status);
+
 	free(execute_path);
 	return (0);
 }
@@ -101,8 +99,10 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 
 	if (_strcmp(str, "exit") == 0)
 		return (2);
+
 	if (_strcmp(str, "env") == 0)
 		return (_printenv());
+
 	token = strtok(str, " "), i = 0;
 	while (token)
 	{
@@ -110,5 +110,6 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 		token = strtok(NULL, " ");
 	}
 	cmd_arr[i] = NULL;
+	free(token);
 	return (execute(cmd_arr));
 }
