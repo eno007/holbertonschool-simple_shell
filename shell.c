@@ -64,7 +64,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		exit(EXIT_FAILURE);
+		exit(2);
 	}
 	else if (pid == 0)
 	{
