@@ -72,7 +72,7 @@ int execute(char *cmd_arr[])
 		{
 			execve(execute_path, cmd_arr, environ);
 			perror("Error:");
-			exit(2);
+			return (-1);
 		}
 		else
 			execve(execute_path, cmd_arr, NULL);
