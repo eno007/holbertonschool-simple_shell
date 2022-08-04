@@ -65,4 +65,5 @@ int _printenv(void)
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
+	return (0);
 }
