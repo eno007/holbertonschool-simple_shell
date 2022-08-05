@@ -39,7 +39,7 @@ int _str_n_cmp(const char *s1, const char *s2, size_t n)
 char *_getenv(char *name)
 {
 	int i = 0;
-	int len = strlen(name);
+	int len = _strlen(name);
 
 	while (environ[i] != NULL)
 	{
