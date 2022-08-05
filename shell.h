@@ -12,7 +12,7 @@
 #include <fcntl.h>
 
 
-char *name;/* global variable */
+char *name;
 extern char **environ;
 
 int _strlen(char *s);
