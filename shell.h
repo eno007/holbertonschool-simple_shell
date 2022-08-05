@@ -12,7 +12,6 @@
 #include <fcntl.h>
 
 
-
 char *name;/* global variable */
 extern char **environ;
 
@@ -31,5 +30,4 @@ int command_read(char *str, size_t __attribute__((unused))characters);
 int main(int __attribute__ ((unused))argc, char *argv[]);
 int execute(char *cmd_arr[]);
 
-/* char *_strtok(char *str, const char *delim); */
 #endif

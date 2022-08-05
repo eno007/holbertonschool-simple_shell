@@ -28,8 +28,10 @@ int main(int __attribute__ ((unused))argc, char *argv[])
 		}
 		if (line[chars - 1] == '\n')
 			line[chars - 1] = '\0';
+
 		if (*line == '\0')
 			continue;
+
 		if (command_read(line, chars) == 2)
 			break;
 	}
@@ -64,7 +66,7 @@ int execute(char *cmd_arr[])
 	if (pid < 0)
 	{
 		perror("Error:");
-		return (0);
+		exit(2);
 	}
 	else if (pid == 0)
 	{
@@ -72,7 +74,7 @@ int execute(char *cmd_arr[])
 		{
 			execve(execute_path, cmd_arr, environ);
 			perror("Error:");
-			exit(2);
+			return (-1);
 		}
 		else
 			execve(execute_path, cmd_arr, NULL);
@@ -92,7 +94,7 @@ int execute(char *cmd_arr[])
 
 int command_read(char *str, size_t __attribute__((unused))characters)
 {
-	char *token = NULL;
+	char *token;
 	char *cmd_arr[100];
 	int i;
 
@@ -102,11 +104,14 @@ int command_read(char *str, size_t __attribute__((unused))characters)
 	if (_strcmp(str, "env") == 0)
 		return (_printenv());
 
-	token = strtok(str, " "), i = 0;
+	token = strtok(str, "\n\t\r ");
+
+	i = 0;
 	while (token)
 	{
-		cmd_arr[i++] = token;
-		token = strtok(NULL, " ");
+		cmd_arr[i] = token;
+		token = strtok(NULL, "\n\t\r ");
+		i++;
 	}
 	cmd_arr[i] = NULL;
 	free(token);
